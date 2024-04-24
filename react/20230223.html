@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=devi" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      //깊은 복사의 5종류 : concat, filter, map, sclice, 스프래드(전개) 연산자
+      console.log('스프레드 연산자'); //복제할때
+      const a = [1, 2, 3];
+      const b = [...a];
+      //그냥 흩뿌리는것과 배열 안에 뿌려주는것은 다르다. 그냥 뿌리는건, 내부 데이터를 그냥 쏟아내는거고, 배열안에 뿌려주면 배열 형태의 그릇 안에 뿌려주는것과 같음.
+      b.push(4); //b 의 데이터를 4로 변경
+      console.log(a); //문자와 섞을려면 '문자열${}사이에 달러와 스코프 설정.'
+      console.log(b);
+
+      console.log('concat 사용법'); //추가할때
+      const a2 = [1, 2, 3];
+      const b2 = a2.concat(4); //콘캣은 뒤에만 추가값을 넣을 수 있으니 주의
+      //그냥 a2.push를 하면 a2에 값이 추가 되겠지만,  b2 = a2.concat(값)을 사용해주면 a2복사값+(추가값)이 b2에 담긴다.
+      console.log(a2); //문자와 섞을려면 '문자열${}사이에 달러와 스코프 설정.'
+      console.log(b2); //b2에는 a2+추가값이 담겨 출력된다.
+      const c2 = [...a, 4]; //이렇게 스프레드 해도, 콘캣 사용과 같으며 앞뒤로 넣을 수 있다.
+      //배열 안에 a 값을 넣고, 이후 추가 값을 넣은거라 출력시 순서도 똑같.
+
+      console.log('filter 사용법'); //주로 삭제할때 사용한다.
+      const a3 = [1, 2, 3];
+      const b3 = a3.filter((n) => {
+        //a3에 필터를 설치. 이후 담을 그릇 b3과 비교대상 삼을 n 선언
+        return n != 1; //n에 담기는것은 1이 아니다! 선언.
+      });
+      //블리언 값 트루만 받는다.=> 참만 걸러낸다. 즉 위의 1이 아니다. 에 참인 숫자들만 받는다.
+      console.log(b3);
+
+      console.log('sclice 사용법'); //배열 사이에 값을 추가할려면 슬라이스
+      const a4 = [1, 2, 3];
+      const b4 = a4.sclice(0, 2); //0번 인덱스부터 2번인덱스 전 까지만.
+      console.log(b3);
+      const c4 = [a4.slice(0, 2)]; //이러면 [[]] 이렇게 배열 안에 배열로 출력된다.
+      console.log(c4);
+      const d4 = [...a4.slice(0, 2)]; //이러면 일반적인 배열 안에 a4의 값만 뿌려준거라 []하나만 출력.
+      const e4 = [...a4.slice(0, 2), 4, ...a(2, 3)]; //이러면 0번부터 2번직전까지 자르고, 4 추가하고, 다시 2번부터 3번 직전까지 넣는게 된다.
+
+      console.log('map 사용법');
+      const a5 = [1, 2, 3];
+      //맵은 필터랑 다르게 블리언값에 상관하지 않고 반복적으로 뿌려준다.
+      //for(let i = 0; i<a.lengthl i++){
+      //  console.log(a5[i]);
+      //} 위의 포문은 jsx문법에서는 사용할수 없어서 기각.
+      //a5.forEach((n)) => {console.log(n);}); //당장 출력은 가능하지만, 리턴값은 없음.
+      const b5 = a5.map((n) => {
+        n; //그대로면 출력만 되고 사라질 값을 다른곳에 받아낸것.
+      }); //n값을 n에 뿌려라 즉, 값을 그대로 받아내겠다는것.
+      //출력 결과물은 const b5 = [...a5]; 와 같다. 다른점이자 장점은 값을 세세히 수정가능.
+      const c5 = a5.map((n) => n + 10); //이러면 보유한 값에 +10이 되어서 출력.
+
+      const users = [
+        { id: 1, name: '김씨', phonenum: '010' },
+        { id: 2, name: '이씨', phonenum: '110' },
+        { id: 3, name: '라씨', phonenum: '011' },
+      ];
+
+      const updateUserDto = {
+        id: 2,
+        name: '홍씨',
+      };
+      const a6 = users.map((u) =>
+        u.id === updateUserDto.id ? { ...u, ...updateUserDto } : u,
+      );
+
+      //{}중괄호는 오브젝트!!!!
+      //user[1].name = updateUserDto; 인덱스 번호 몇번을 뭐로 교체 이런뜻.
+      //      const w = users.map(
+      //        (n) => users.sclice(0, 1),
+      //        updateUserDto,
+      //        users.sclice(2, 3),
+      //      );
+    </script>
+  </body>
+</html>

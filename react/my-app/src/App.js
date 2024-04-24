@@ -15,10 +15,13 @@ function App() {
     //추천 안하는 방식, 기억.
   };
 
+  let list = [1, 2, 3];
+
   return (
     <div style={color}>
       어서오세요.<br></br>
       {관리자 === 20233353 ? '관리자입니다' : '사용자입니다.'}
+      <div>{list.map((n) => n)}</div>
     </div>
   );
 }
